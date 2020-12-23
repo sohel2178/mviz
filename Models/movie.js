@@ -42,7 +42,7 @@ description:{
     type:String
 },
 video_url:{
-    type:String
+    type:String 
 },
 is_popular:{
     type:Boolean,
