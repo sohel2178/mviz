@@ -70,12 +70,12 @@ router.post('/',(req , res)=>{
 })
 
 
-router.get('/:id',(req , res)=>{
-    Movie.findOne({_id:req.params.id})
-    .then(movie=>res.status(200).json(movie))
-    .catch(error=>res.status(500).json(error))
+// router.get('/:id',(req , res)=>{
+//     Movie.findOne({_id:req.params.id})
+//     .then(movie=>res.status(200).json(movie))
+//     .catch(error=>res.status(500).json(error))
     
-})
+// })
 
 router.put('/:id',(req , res)=>{
    const {category,file_size,imdb_rating,video_quality,
@@ -143,6 +143,23 @@ router.delete('/:id',(req , res)=>{
     Movie.deleteOne({_id:req.params.id})
     .then(()=>res.status(200).json({"message":"Movie Deleted"}))
     .catch(error=>res.status(500).json(error))
+    
+})
+
+router.get('/:id',(req, res)=>{
+    console.log(req.params)
+    Movie.findOne({_id:req.params.id})
+   .then(movie=>res.status(200).json(movie))
+   .catch(error=>res.status(500).json(error))
+    
+})
+
+
+router.get('/:id/increaseView',(req, res)=>{
+    console.log(req.params)
+    Movie.findOneAndUpdate({_id:req.params.id}, { $inc: { views: 1 }})
+   .then(movie=>res.status(200).json(movie))
+   .catch(error=>res.status(500).json(error))
     
 })
 
