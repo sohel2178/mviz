@@ -4,9 +4,15 @@ const bodyParser = require('body-parser');
 
 const Category = require('./Routes/category')
 const Movie = require('./Routes/movie')
+const Status = require('./Routes/status')
 app.use(bodyParser.json());
 
 require("./initDB")
+
+
+app.use('/Movies', express.static(__dirname + '/Movies'));
+
+
 
 
 
@@ -31,7 +37,7 @@ app.use((req, res, next) => {
 
 app.use('/categories',Category)
 app.use('/movies',Movie)
-
+app.use('/status',Status)
 
 
 app.listen(3000,()=>{
